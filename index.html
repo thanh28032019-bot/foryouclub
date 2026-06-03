@@ -3,13 +3,13 @@
 <head>
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <title>FOR YOU CLUB - The Future Of Nightlife</title>
+    <title>FOR YOU CLUB - Menu & Gallery</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* TOÀN BỘ CSS GIAO DIỆN ĐƯỢC ĐẶT TẠI ĐÂY ĐỂ TRÁNH LỖI HỆ THỐNG */
+        /* CSS GIAO DIỆN TÍCH HỢP TRỰC TIẾP */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -18,7 +18,6 @@
 
         :root {
             --neon-cyan: #00e5ff;
-            --neon-pink: #ff007f;
             --neon-glow: rgba(0, 229, 255, 0.6);
             --bg-dark: #030305;
             --card-bg: rgba(255, 255, 255, 0.02);
@@ -33,13 +32,13 @@
             overflow-x: hidden;
         }
 
-        /* THANH ĐIỀU HƯỚNG (NAVBAR) */
+        /* NAVBAR */
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 15px 5%;
-            background: rgba(3, 3, 5, 0.9);
+            background: rgba(3, 3, 5, 0.95);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             position: sticky;
@@ -55,8 +54,8 @@
         }
 
         .logo-img {
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             object-fit: cover;
             border-radius: 50%;
             border: 1px solid var(--neon-cyan);
@@ -107,11 +106,11 @@
             box-shadow: 0 0 20px var(--neon-glow);
         }
 
-        /* TRANG BÌA CHÍNH (HERO SECTION) */
+        /* HERO SECTION */
         .hero {
-            height: 80vh;
+            height: 70vh;
             position: relative;
-            background: linear-gradient(to bottom, rgba(3,3,5,0.2), rgba(3,3,5,0.95)), url('IMG_3433.jpg') center/cover no-repeat;
+            background: linear-gradient(to bottom, rgba(3,3,5,0.2), rgba(3,3,5,0.95)), url('68dbde60697b55b6f223d783217c7743.jpg') center/cover no-repeat;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -131,6 +130,7 @@
             margin-bottom: 15px;
             border: 2px solid var(--neon-cyan);
             box-shadow: 0 0 25px var(--neon-glow);
+            object-fit: cover;
         }
 
         h1 {
@@ -189,7 +189,7 @@
             color: #000;
         }
 
-        /* ĐỊNH DẠNG CHUNG CÁC PHẦN */
+        /* ĐỊNH DẠNG CHUNG */
         section {
             padding: 60px 5%;
             max-width: 1200px;
@@ -229,7 +229,6 @@
             border-top: 4px solid var(--neon-cyan);
             border-radius: 16px;
             padding: 30px 25px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
         }
 
         .menu-block h3 {
@@ -238,7 +237,6 @@
             font-size: 22px;
             margin-bottom: 25px;
             text-transform: uppercase;
-            letter-spacing: 1px;
             text-align: center;
         }
 
@@ -277,7 +275,7 @@
             line-height: 1.4;
         }
 
-        /* ALBUM ẢNH (GALLERY) */
+        /* GRID HÌNH ẢNH */
         .album-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -289,26 +287,25 @@
             border-radius: 12px;
             height: 250px;
             border: 1px solid rgba(255,255,255,0.05);
-            position: relative;
         }
 
         .album-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.4s ease;
         }
 
         .album-card:hover img {
-            transform: scale(1.06);
+            transform: scale(1.05);
         }
 
         /* LIÊN HỆ */
         .contact-box {
-            background: linear-gradient(135deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0) 100%);
+            background: rgba(255,255,255,0.01);
             border: 1px solid var(--border-color);
             border-radius: 20px;
-            padding: 50px 30px;
+            padding: 40px 20px;
             text-align: center;
             max-width: 700px;
             margin: auto;
@@ -317,29 +314,17 @@
         .info-p {
             font-size: 18px;
             margin: 18px 0;
-            color: #e0e0e0;
-        }
-
-        .info-p strong {
-            color: var(--neon-cyan);
         }
 
         .fb-link-btn {
             display: inline-block;
-            margin-top: 25px;
-            padding: 14px 35px;
+            margin-top: 20px;
+            padding: 12px 30px;
             background: #1877f2;
             color: white;
             text-decoration: none;
             border-radius: 50px;
             font-weight: bold;
-            box-shadow: 0 4px 15px rgba(24, 119, 242, 0.3);
-            transition: 0.3s;
-        }
-
-        .fb-link-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(24, 119, 242, 0.5);
         }
 
         footer {
@@ -348,15 +333,13 @@
             color: #555;
             font-size: 13px;
             border-top: 1px solid rgba(255,255,255,0.05);
-            margin-top: 40px;
         }
 
-        /* ĐÁP ỨNG DI ĐỘNG */
         @media (max-width: 768px) {
-            h1 { font-size: 36px; }
+            h1 { font-size: 34px; }
             .subtitle { font-size: 14px; letter-spacing: 4px; }
             section { padding: 40px 20px; }
-            .nav-menu a:not(.book-btn) { display: none; } /* Ẩn bớt để chống tràn màn hình điện thoại */
+            .nav-menu a:not(.book-btn) { display: none; }
         }
     </style>
 </head>
@@ -364,7 +347,7 @@
 
     <nav>
         <div class="logo-box">
-            <img src="IMG_3427.jpg" alt="Logo" class="logo-img">
+            <img src="9a6a90071630d4b2ea4c5d92181d22ec.jpg" alt="Logo" class="logo-img">
             <div class="logo-title">FOR YOU CLUB</div>
         </div>
         <div class="nav-menu">
@@ -377,7 +360,7 @@
 
     <section class="hero">
         <div class="hero-content">
-            <img src="IMG_3427.jpg" alt="Big Logo" class="hero-avatar">
+            <img src="9a6a90071630d4b2ea4c5d92181d22ec.jpg" alt="Big Logo" class="hero-avatar">
             <h1>FOR YOU CLUB</h1>
             <p class="subtitle">The Future Of Nightlife</p>
             <div class="button-group">
@@ -402,7 +385,7 @@
                         <span class="dish-line"></span>
                         <span class="dish-price">Liên hệ</span>
                     </div>
-                    <p class="dish-desc">Bao gồm 1 tháp bia hoặc rượu nhẹ kèm đĩa trái cây lớn tươi ngon ngon tươi.</p>
+                    <p class="dish-desc">Bao gồm 1 tháp bia hoặc rượu nhẹ kèm đĩa trái cây lớn tươi ngon.</p>
                 </div>
                 <div class="menu-list-item">
                     <div class="menu-flex">
@@ -410,65 +393,23 @@
                         <span class="dish-line"></span>
                         <span class="dish-price">Liên hệ</span>
                     </div>
-                    <p class="dish-desc">Set cao cấp dành cho bàn VIP: Rượu mạnh Premium, nước mix & trái cây dĩa thượng hạng.</p>
+                    <p class="dish-desc">Set cao cấp dành cho bàn VIP: Rượu mạnh Premium, nước mix & trái cây thượng hạng.</p>
                 </div>
             </div>
 
             <div class="menu-block">
                 <h3>Đồ Uống & Rượu</h3>
-                <div class="menu-list-item">
-                    <div class="menu-flex">
-                        <span class="dish-name">Premium Whisky</span>
-                        <span class="dish-line"></span>
-                        <span class="dish-price">Menu</span>
-                    </div>
-                </div>
-                <div class="menu-list-item">
-                    <div class="menu-flex">
-                        <span class="dish-name">Cognac / Champagne</span>
-                        <span class="dish-line"></span>
-                        <span class="dish-price">Menu</span>
-                    </div>
-                </div>
-                <div class="menu-list-item">
-                    <div class="menu-flex">
-                        <span class="dish-name">Bia Chai Nhập Khẩu</span>
-                        <span class="dish-line"></span>
-                        <span class="dish-price">Menu</span>
-                    </div>
-                </div>
-                <div class="menu-list-item">
-                    <div class="menu-flex">
-                        <span class="dish-name">Cocktail & Softdrink</span>
-                        <span class="dish-line"></span>
-                        <span class="dish-price">Menu</span>
-                    </div>
-                </div>
+                <div class="menu-list-item"><div class="menu-flex"><span class="dish-name">Premium Whisky</span><span class="dish-line"></span><span class="dish-price">Menu</span></div></div>
+                <div class="menu-list-item"><div class="menu-flex"><span class="dish-name">Cognac / Champagne</span><span class="dish-line"></span><span class="dish-price">Menu</span></div></div>
+                <div class="menu-list-item"><div class="menu-flex"><span class="dish-name">Bia Chai Nhập Khẩu</span><span class="dish-line"></span><span class="dish-price">Menu</span></div></div>
+                <div class="menu-list-item"><div class="menu-flex"><span class="dish-name">Cocktail & Softdrink</span><span class="dish-line"></span><span class="dish-price">Menu</span></div></div>
             </div>
 
             <div class="menu-block">
                 <h3>Món Ăn Nhẹ</h3>
-                <div class="menu-list-item">
-                    <div class="menu-flex">
-                        <span class="dish-name">Trái Cây Thập Cẩm</span>
-                        <span class="dish-line"></span>
-                        <span class="dish-price">Menu</span>
-                    </div>
-                </div>
-                <div class="menu-list-item">
-                    <div class="menu-flex">
-                        <span class="dish-name">Khô Bò / Trâu Gác Bếp</span>
-                        <span class="dish-line"></span>
-                        <span class="dish-price">Menu</span>
-                    </div>
-                </div>
-                <div class="menu-list-item">
-                    <div class="menu-flex">
-                        <span class="dish-name">Đồ Khô / Hạt Điều Premium</span>
-                        <span class="dish-line"></span>
-                        <span class="dish-price">Menu</span>
-                    </div>
-                </div>
+                <div class="menu-list-item"><div class="menu-flex"><span class="dish-name">Trái Cây Thập Cẩm</span><span class="dish-line"></span><span class="dish-price">Menu</span></div></div>
+                <div class="menu-list-item"><div class="menu-flex"><span class="dish-name">Khô Bò / Trâu Gác Bếp</span><span class="dish-line"></span><span class="dish-price">Menu</span></div></div>
+                <div class="menu-list-item"><div class="menu-flex"><span class="dish-name">Đồ Khô / Hạt Điều Premium</span><span class="dish-line"></span><span class="dish-price">Menu</span></div></div>
             </div>
         </div>
     </section>
@@ -479,18 +420,16 @@
             <div class="neon-line"></div>
         </div>
         <div class="album-grid">
-            <div class="album-card"><img src="IMG_3433.jpg" alt="For You Club"></div>
-            <div class="album-card"><img src="IMG_3431.jpg" alt="For You Club"></div>
-            <div class="album-card"><img src="IMG_3432.jpg" alt="For You Club"></div>
-            <div class="album-card"><img src="IMG_3430.jpg" alt="For You Club"></div>
-            <div class="album-card"><img src="IMG_3429.jpg" alt="For You Club"></div>
-            <div class="album-card"><img src="IMG_3434.jpg" alt="For You Club"></div>
-            <div class="album-card"><img src="IMG_3435.jpg" alt="For You Club"></div>
-            <div class="album-card"><img src="IMG_3436.jpg" alt="For You Club"></div>
-            <div class="album-card"><img src="IMG_3437.jpg" alt="For You Club"></div>
             <div class="album-card"><img src="9a6a90071630d4b2ea4c5d92181d22ec.jpg" alt="For You Club"></div>
             <div class="album-card"><img src="28d4826f57ed155358799c0881caa020.jpg" alt="For You Club"></div>
             <div class="album-card"><img src="68dbde60697b55b6f223d783217c7743.jpg" alt="For You Club"></div>
+            <div class="album-card"><img src="784f1058465ec16706b7ebf68d3fa491.jpg" alt="For You Club"></div>
+            <div class="album-card"><img src="89474c23d37ae7de3cf806368aac5c0e.jpg" alt="For You Club"></div>
+            <div class="album-card"><img src="427302b35d948a43ed9992600ff62967.jpg" alt="For You Club"></div>
+            <div class="album-card"><img src="6916018c64728fe1dc65aaabd8bc1b22.jpg" alt="For You Club"></div>
+            <div class="album-card"><img src="c65e97c4f883dbefbed59ccd8501a3af.jpg" alt="For You Club"></div>
+            <div class="album-card"><img src="f4d9378100ffe8c4c929faa30f4ff3c5.jpg" alt="For You Club"></div>
+            <div class="album-card"><img src="898b7d64bf7e4e853bbf4477bf7e8da3.jpg" alt="For You Club"></div>
         </div>
     </section>
 
@@ -502,7 +441,7 @@
             </div>
             <p class="info-p">📍 <strong>Địa chỉ:</strong> 52-55 Trần Văn Trứ, Đà Nẵng</p>
             <p class="info-p">📞 <strong>Hotline:</strong> <a href="tel:0775007445" style="color:var(--neon-cyan); text-decoration:none;">0775 007 445</a></p>
-            <a class="fb-link-btn" href="https://www.facebook.com/share/18pw1TybkP/?mibextid=wwXIfr" target="_blank">🔷 KẾT NỐI QUA FACEBOOK FANPAGE</a>
+            <a class="fb-link-btn" href="https://www.facebook.com/share/18pw1TybkP/?mibextid=wwXIfr" target="_blank">🔷 KẾT NỐI QUA FACEBOOK</a>
         </div>
     </section>
 
