@@ -1,570 +1,958 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset='utf-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <title>FOR YOU CLUB - The Future Of Nightlife</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2 family=Orbitron:wght@700;900&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FOR YOU CLUB | Da Nang Nightlife Premium</title>
     
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-        /* --- HỆ THỐNG GIAO DIỆN CYBERPUNK KHÔNG DÙNG ẢNH --- */
+        :root {
+            --primary: #d4af37; /* Vàng kim luxury */
+            --primary-glow: rgba(212, 175, 55, 0.4);
+            --bg-dark: #070709;
+            --bg-card: #121216;
+            --text-light: #f5f5f7;
+            --text-muted: #a1a1a6;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
-        }
-
-        :root {
-            --neon-cyan: #00e5ff;
-            --neon-pink: #ff007f;
-            --neon-purple: #9d00ff;
-            --bg-dark: #050508;
-            --card-bg: rgba(255, 255, 255, 0.02);
-            --border-neon: rgba(0, 229, 255, 0.2);
-            --glow-cyan: rgba(0, 229, 255, 0.6);
-            --glow-pink: rgba(255, 0, 127, 0.6);
-        }
-
-        html {
-            scroll-behavior: smooth; /* Tạo hiệu ứng cuộn mượt mà khi ấn menu */
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
-            background-color: var(--bg-dark);
-            color: #ffffff;
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-light);
             overflow-x: hidden;
+            letter-spacing: 0.5px;
         }
 
-        /* KHU VỰC THANH MENU (NAVBAR) */
-        nav {
+        /* Navigation Bar */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 8%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 8%;
-            background: rgba(5, 5, 8, 0.95);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            position: sticky;
-            top: 0;
-            z-index: 9999;
-            border-bottom: 1px solid var(--border-neon);
+            z-index: 1000;
+            background: linear-gradient(to bottom, rgba(7,7,9,0.95), rgba(7,7,9,0));
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
         }
 
-        .logo-box {
-            font-family: 'Orbitron', sans-serif;
+        .logo {
+            font-size: 24px;
             font-weight: 900;
-            font-size: 22px;
-            color: #fff;
-            text-shadow: 0 0 10px #fff, 0 0 20px var(--neon-cyan);
+            color: var(--primary);
+            text-decoration: none;
             letter-spacing: 2px;
-            text-decoration: none;
+            text-shadow: 0 0 10px var(--primary-glow);
         }
 
-        /* Menu trên Máy tính */
-        .nav-menu {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-        }
-
-        .nav-menu a {
-            color: #b0b0b8;
+        nav a {
+            color: var(--text-light);
             text-decoration: none;
-            font-weight: 500;
-            font-size: 15px;
+            font-weight: 600;
+            margin-left: 35px;
+            font-size: 14px;
             letter-spacing: 1px;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
 
-        .nav-menu a:hover {
-            color: var(--neon-cyan);
-            text-shadow: 0 0 8px var(--glow-cyan);
+        nav a:hover, nav a.active {
+            color: var(--primary);
         }
 
-        /* Nút Đặt Bàn Máy Tính */
-        .book-btn {
-            background: transparent;
-            border: 2px solid var(--neon-pink);
-            color: var(--neon-pink) !important;
-            padding: 10px 24px;
-            border-radius: 50px;
-            font-weight: 700 !important;
-            text-transform: uppercase;
-            box-shadow: 0 0 10px rgba(255, 0, 127, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .book-btn:hover {
-            background: var(--neon-pink);
-            color: #000 !important;
-            box-shadow: 0 0 25px var(--glow-pink);
-            transform: scale(1.05);
-        }
-
-        /* Nút Menu Ba Gạch (Chỉ hiện trên điện thoại) */
-        .menu-toggle {
-            display: none;
-            font-size: 28px;
-            color: var(--neon-cyan);
-            background: none;
-            border: none;
-            cursor: pointer;
-            text-shadow: 0 0 10px var(--neon-cyan);
-        }
-
-        /* MENU DI ĐỘNG TRƯỢT (SIDEBAR) */
-        .sidebar {
-            position: fixed;
-            top: 0;
-            right: -100%; /* Giấu menu đi ban đầu */
-            width: 280px;
-            height: 100vh;
-            background: rgba(5, 5, 8, 0.98);
-            border-left: 1px solid var(--border-neon);
-            box-shadow: -10px 0 30px rgba(0,0,0,0.5);
-            z-index: 10000;
-            display: flex;
-            flex-direction: column;
-            padding: 40px 30px;
-            gap: 25px;
-            transition: right 0.4s cubic-bezier(0.1, 0.9, 0.2, 1);
-        }
-
-        .sidebar.active {
-            right: 0; /* Đẩy menu ra khi ấn nút */
-        }
-
-        .close-btn {
-            align-self: flex-end;
-            font-size: 30px;
-            color: var(--neon-pink);
-            background: none;
-            border: none;
-            cursor: pointer;
-            margin-bottom: 20px;
-        }
-
-        .sidebar a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 18px;
-            font-family: 'Orbitron', sans-serif;
-            letter-spacing: 1px;
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.03);
-            transition: color 0.3s;
-        }
-
-        .sidebar a:hover {
-            color: var(--neon-cyan);
-        }
-
-        .sidebar .sidebar-book {
-            border: 2px solid var(--neon-pink);
-            color: var(--neon-pink);
-            text-align: center;
-            border-radius: 50px;
-            margin-top: 20px;
-            font-weight: 700;
-        }
-
-        /* TRANG BÌA CHÍNH (HERO) */
+        /* Hero Section */
         .hero {
-            height: 85vh;
+            height: 100vh;
+            background: 
+                linear-gradient(135deg, rgba(7,7,9,0.85) 40%, rgba(212,175,55,0.1) 100%),
+                url('https://images.unsplash.com/photo-1566737236500-c8ac43014a67?q=80&w=2000');
+            background-size: cover;
+            background-position: center;
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             text-align: center;
+            padding: 20px;
             position: relative;
-            background: radial-gradient(circle at 50% 40%, rgba(157, 0, 255, 0.15), transparent 50%),
-                        radial-gradient(circle at 30% 70%, rgba(0, 229, 255, 0.08), transparent 40%);
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(to top, var(--bg-dark), transparent);
         }
 
         .hero-content {
-            z-index: 2;
             max-width: 900px;
-            padding: 0 20px;
+            animation: fadeIn 1.5s ease-out;
         }
 
-        .hero-icon {
-            font-size: 70px;
-            margin-bottom: 20px;
-            animation: pulse 2s infinite alternate;
-            display: inline-block;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); filter: drop-shadow(0 0 10px var(--neon-cyan)); }
-            100% { transform: scale(1.1); filter: drop-shadow(0 0 25px var(--neon-pink)); }
-        }
-
-        h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 65px;
+        .hero-content h1 {
+            font-size: clamp(45px, 7vw, 90px);
             font-weight: 900;
-            color: #fff;
-            letter-spacing: 5px;
-            text-shadow: 0 0 40px var(--neon-cyan);
-            margin-bottom: 10px;
+            letter-spacing: 6px;
+            background: linear-gradient(45deg, #fff, var(--primary), #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(212,175,55,0.2);
+            line-height: 1.1;
         }
 
-        .subtitle {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 18px;
-            letter-spacing: 8px;
-            margin-bottom: 45px;
-            color: var(--neon-pink);
-            text-transform: uppercase;
-            text-shadow: 0 0 10px var(--glow-pink);
+        .hero-content p {
+            font-size: clamp(14px, 2.5vw, 20px);
+            margin-top: 25px;
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 4px;
         }
 
-        .button-group {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
+        .hero-content .highlight {
+            color: var(--primary);
+            font-weight: 600;
         }
 
-        .action-btn {
-            padding: 16px 36px;
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 40px;
+            padding: 18px 45px;
+            background: linear-gradient(135deg, #f3d17a, var(--primary));
+            color: #000;
             text-decoration: none;
-            border-radius: 50px;
             font-weight: 700;
             font-size: 15px;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
+            letter-spacing: 2px;
+            border-radius: 50px;
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.3);
+            transition: var(--transition);
         }
 
-        .btn-call {
-            background: var(--neon-cyan);
-            color: #000;
-            box-shadow: 0 0 15px var(--glow-cyan);
+        .btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px var(--primary-glow);
         }
 
-        .btn-call:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 0 30px var(--neon-cyan);
-        }
-
-        .btn-zalo {
-            background: rgba(255, 255, 255, 0.04);
-            color: #fff;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-        }
-
-        .btn-zalo:hover {
-            background: #fff;
-            color: #000;
-            transform: translateY(-3px);
-        }
-
-        /* THIẾT KẾ ĐỊNH DẠNG CÁC PHẦN CHÍNH */
+        /* Section Base */
         section {
-            padding: 90px 8%;
-            max-width: 1400px;
-            margin: auto;
+            padding: 100px 8% 60px 8%;
+            position: relative;
         }
 
         .section-title {
             text-align: center;
+            font-size: clamp(30px, 4vw, 42px);
+            font-weight: 900;
+            letter-spacing: 4px;
             margin-bottom: 60px;
-        }
-
-        .section-title h2 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 36px;
-            letter-spacing: 3px;
             color: #fff;
-        }
-
-        .neon-line {
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-pink));
-            margin: 15px auto 0 auto;
-            border-radius: 10px;
-        }
-
-        /* KHU VỰC TRẢI NGHIỆM */
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 25px;
-        }
-
-        .feature-card {
-            background: rgba(255, 255, 255, 0.01);
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            border-radius: 20px;
-            padding: 40px 30px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .feature-card:hover {
-            background: rgba(255, 255, 255, 0.03);
-            border-color: var(--border-neon);
-            transform: translateY(-5px);
-        }
-
-        .feature-icon {
-            font-size: 45px;
-            margin-bottom: 20px;
-            display: block;
-        }
-
-        .feature-card h4 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 20px;
-            color: #fff;
-            margin-bottom: 12px;
-        }
-
-        .feature-card p {
-            color: #8e8e9a;
-            font-size: 14px;
-            line-height: 1.6;
-        }
-
-        /* KHU VỰC MENU ĐỒ UỐNG */
-        .menu-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-            gap: 35px;
-        }
-
-        .menu-block {
-            background: linear-gradient(135deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.00) 100%);
-            border: 1px solid rgba(0, 229, 255, 0.1);
-            border-radius: 24px;
-            padding: 35px;
             position: relative;
         }
 
-        .menu-block h3 {
-            font-family: 'Orbitron', sans-serif;
-            color: var(--neon-cyan);
-            font-size: 24px;
-            margin-bottom: 35px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-align: center;
-            text-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 2px;
         }
 
-        .menu-list-item {
-            margin-bottom: 25px;
+        /* --- LUXURY BOOKING MENU SYSTEM --- */
+        .menu-container {
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .menu-flex {
+        /* Menu Tabs Bar */
+        .menu-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 50px;
+            background: rgba(255,255,255,0.02);
+            padding: 10px;
+            border-radius: 50px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .tab-btn {
+            padding: 14px 28px;
+            background: transparent;
+            color: var(--text-muted);
+            border: none;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .tab-btn:hover {
+            color: #fff;
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: #000;
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Menu Content Area */
+        .menu-content {
+            display: none;
+            animation: fadeIn 0.6s ease;
+        }
+
+        .menu-content.active {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        /* Combo Cards */
+        .menu-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.04);
+            border-radius: 20px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .menu-card:hover {
+            border-color: rgba(212,175,55,0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+        }
+
+        .combo-header {
             display: flex;
             justify-content: space-between;
-            align-items: baseline;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-bottom: 15px;
         }
 
-        .dish-name {
+        .combo-name {
+            font-size: 18px;
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+
+        .combo-price {
+            font-size: 18px;
             font-weight: 700;
-            color: #ffffff;
-            font-size: 17px;
+            color: var(--primary);
         }
 
-        .dish-line {
-            flex-grow: 1;
-            border-bottom: 1px dashed rgba(0, 229, 255, 0.15);
-            margin: 0 15px;
+        .combo-details {
+            list-style: none;
+            margin-bottom: 20px;
         }
 
-        .dish-price {
-            color: var(--neon-pink);
+        .combo-details li {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .combo-details li i {
+            color: var(--primary);
+            font-size: 12px;
+            width: 15px;
+        }
+
+        /* Single Items List (Cho Champagne, Cocktail, Drink...) */
+        .single-list {
+            grid-column: 1 / -1;
+            background: var(--bg-card);
+            border-radius: 24px;
+            padding: 40px;
+            border: 1px solid rgba(255,255,255,0.03);
+        }
+
+        .item-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            transition: var(--transition);
+        }
+
+        .item-row:last-child {
+            border-bottom: none;
+        }
+
+        .item-row:hover {
+            padding-left: 10px;
+            background: rgba(255,255,255,0.01);
+        }
+
+        .item-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .item-price {
+            font-size: 16px;
             font-weight: 700;
-            font-family: 'Orbitron', sans-serif;
+            color: var(--primary);
         }
 
-        .dish-desc {
-            font-size: 13px;
-            color: #8a8a93;
-            margin-top: 6px;
-            line-height: 1.5;
-        }
-
-        /* KHU VỰC LIÊN HỆ */
-        .contact-box {
-            background: linear-gradient(180deg, rgba(255,255,255,0.01) 0%, rgba(255,255,255,0.00) 100%);
-            border: 1px solid rgba(255, 0, 127, 0.15);
-            border-radius: 30px;
-            padding: 60px 40px;
+        .menu-notice {
             text-align: center;
-            max-width: 800px;
-            margin: 40px auto 0 auto;
+            margin-top: 40px;
+            font-size: 13px;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            font-style: italic;
         }
 
-        .info-p {
-            font-size: 20px;
-            margin: 22px 0;
-            color: #e2e2e8;
+        /* About Section Box */
+        .about-box {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.03);
+            padding: 50px;
+            border-radius: 24px;
+            max-width: 900px;
+            margin: auto;
+            text-align: center;
         }
 
-        .info-p strong {
-            color: var(--neon-cyan);
+        .about-text {
+            line-height: 2;
+            font-size: 17px;
+            color: var(--text-muted);
         }
 
-        .fb-link-btn {
-            display: inline-block;
-            margin-top: 25px;
-            padding: 16px 40px;
-            background: #1877f2;
-            color: white;
-            text-decoration: none;
+        /* Gallery Grid */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            height: 350px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to top, rgba(7,7,9,0.7), transparent);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.06);
+        }
+
+        /* Contact Details */
+        .contact { text-align: center; }
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-bottom: 50px;
+        }
+        .info-item {
+            font-size: 17px;
+            background: var(--bg-card);
+            padding: 18px 35px;
             border-radius: 50px;
-            font-weight: bold;
-            font-size: 15px;
-            box-shadow: 0 5px 20px rgba(24, 119, 242, 0.3);
-            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.03);
         }
+        .info-item i { color: var(--primary); margin-right: 10px; }
 
-        .fb-link-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(24, 119, 242, 0.5);
+        .socials { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; }
+        .socials a {
+            padding: 15px 30px; border-radius: 50px; text-decoration: none;
+            font-weight: 600; font-size: 14px; background: rgba(255,255,255,0.02);
+            color: #fff; border: 1px solid rgba(255,255,255,0.08);
+            transition: var(--transition); display: inline-flex; align-items: center; gap: 8px;
         }
+        .socials a:hover { background: #fff; color: #000; transform: translateY(-3px); }
 
         footer {
-            text-align: center;
-            padding: 35px;
-            color: #4a4a52;
-            font-size: 14px;
-            border-top: 1px solid rgba(255,255,255,0.02);
-            letter-spacing: 1px;
-            font-family: 'Orbitron', sans-serif;
+            text-align: center; padding: 50px 20px; background: #030304;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+        }
+        footer h3 { font-size: 20px; letter-spacing: 2px; color: var(--primary); margin-bottom: 10px; }
+        footer p { color: var(--text-muted); font-size: 13px; }
+
+        /* Floating Button */
+        .floating {
+            position: fixed; bottom: 30px; right: 30px;
+            background: linear-gradient(135deg, #fff, var(--primary));
+            color: black; padding: 16px 32px; border-radius: 50px;
+            font-weight: 700; text-decoration: none; z-index: 999;
+            box-shadow: 0 10px 30px var(--primary-glow); transition: var(--transition);
+            display: flex; align-items: center; gap: 10px; font-size: 14px;
+        }
+        .floating:hover { transform: scale(1.05) translateY(-3px); }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* RESPONSIVE TRÊN ĐIỆN THOẠI */
+        /* Mobile Optimization */
         @media (max-width: 768px) {
-            h1 { font-size: 38px; letter-spacing: 2px; }
-            .subtitle { font-size: 14px; letter-spacing: 4px; }
-            nav { padding: 15px 6%; }
-            .logo-text { font-size: 18px; }
-            
-            /* Ẩn thanh menu ngang trên điện thoại */
-            .nav-menu { display: none; }
-            /* Hiện nút ba gạch trên điện thoại */
-            .menu-toggle { display: block; }
-            
-            section { padding: 50px 24px; }
-            .menu-block { padding: 25px; }
+            header { padding: 15px 5%; justify-content: center; }
+            nav { display: none; }
+            section { padding: 80px 5% 50px 5%; }
+            .menu-tabs { border-radius: 20px; padding: 5px; }
+            .tab-btn { padding: 10px 18px; font-size: 13px; width: 47%; text-align: center; }
+            .single-list { padding: 20px; }
+            .info-item { width: 100%; }
         }
     </style>
 </head>
 <body>
 
-    <nav>
-        <a href="#" class="logo-box">FOR YOU CLUB</a>
-        
-        <div class="nav-menu">
-            <a href="#experience-section">Trải Nghiệm</a>
-            <a href="#menu-section">Menu Quán</a>
-            <a href="#contact-section">Liên Hệ</a>
-            <a class="book-btn" href="tel:0775007445">ĐẶT BÀN</a>
+    <header>
+        <a href="#" class="logo">FOR YOU CLUB</a>
+        <nav>
+            <a href="#">TRANG CHỦ</a>
+            <a href="#about">GIỚI THIỆU</a>
+            <a href="#menu" class="active">EXCLUSIVES MENU</a>
+            <a href="#contact">LIÊN HỆ</a>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <div class="hero-content">
+            <h1>FOR YOU CLUB</h1>
+            <p>THE HEART OF <span class="highlight">DA NANG</span> NIGHTLIFE</p>
+            <p style="font-size: 14px; margin-top: 10px; opacity: 0.8; letter-spacing: 2px;">Premium Music • VIP Experience • Luxury Nightlife</p>
+            <a href="#menu" class="btn">
+                <i class="fa-solid fa-wine-glass-and-rhetor"></i> XEM MENU VIP
+            </a>
         </div>
-
-        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-    </nav>
-
-    <div class="sidebar" id="mobileSidebar">
-        <button class="close-btn" onclick="toggleMenu()">✕</button>
-        <a href="#experience-section" onclick="toggleMenu()">Trải Nghiệm</a>
-        <a href="#menu-section" onclick="toggleMenu()">Menu Quán</a>
-        <a href="#contact-section" onclick="toggleMenu()">Liên Hệ</a>
-        <a class="sidebar-book" href="tel:0775007445">ĐẶT BÀN VIP</a>
     </div>
 
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-icon">🔮</div>
-            <h1>FOR YOU CLUB</h1>
-            <p class="subtitle">The Future Of Nightlife</p>
-            <div class="button-group">
-                <a class="action-btn btn-call" href="tel:0775007445">📞 HOTLINE: 0775.007.445</a>
-                <a class="action-btn btn-zalo" href="http://zalo.me/84775007445" target="_blank">💬 CHAT ZALO</a>
-            </div>
-        </div>
-    </section>
-
-    <section id="experience-section">
-        <div class="section-title">
-            <h2>TRẢI NGHIỆM THỜI THƯỢNG</h2>
-            <div class="neon-line"></div>
-        </div>
-        <div class="feature-grid">
-            <div class="feature-card">
-                <span class="feature-icon">🎧</span>
-                <h4>Top DJ Show</h4>
-                <p>Hòa mình vào không gian âm nhạc đỉnh cao cùng dàn DJ tên tuổi lớn hàng tuần.</p>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">🤖</span>
-                <h4>Future Stage</h4>
-                <p>Hệ thống ánh sáng Laser Cyberpunk tân tiến đưa bạn chạm tới tương lai giải trí.</p>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">🍾</span>
-                <h4>VIP Lounge</h4>
-                <p>Khu vực phòng VIP sang trọng đẳng cấp, dịch vụ chăm sóc khách hàng đỉnh cao.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="menu-section">
-        <div class="section-title">
-            <h2>MENU CAO CẤP</h2>
-            <div class="neon-line"></div>
-        </div>
+    <section id="menu">
+        <h2 class="section-title">VIP ELECTRONIC MENU</h2>
         
         <div class="menu-container">
-            <div class="menu-block">
-                <h3>👑 VIP COMBO SET</h3>
-                <div class="menu-list-item">
-                    <div class="menu-flex">
-                        <span class="dish-name">Combo Standard</span>
-                        <span class="dish-line"></span>
-                        <span class="dish-price">Liên Hệ</span>
+            <div class="menu-tabs">
+                <button class="tab-btn active" onclick="openMenu(event, 'combo-ruou-1')">COMBO RƯỢU LẺ</button>
+                <button class="tab-btn" onclick="openMenu(event, 'combo-ruou-2')">COMBO RƯỢU ĐÔI/BA</button>
+                <button class="tab-btn" onclick="openMenu(event, 'combo-bia')">COMBO BIA VIP</button>
+                <button class="tab-btn" onclick="openMenu(event, 'champagne')">CHAMPAGNE</button>
+                <button class="tab-btn" onclick="openMenu(event, 'cocktails')">COCKTAIL</button>
+                <button class="tab-btn" onclick="openMenu(event, 'shisha-soft')">SHISHA & NƯỚC</button>
+            </div>
+
+            <div id="combo-ruou-1" class="menu-content active">
+                <div class="menu-card">
+                    <div class="combo-header">
+                        <span class="combo-name">COMBO 15</span>
+                        <span class="combo-price">3.990.000</span>
                     </div>
-                    <p class="dish-desc">Bao gồm 1 tháp bia tươi mát lạnh hoặc rượu nhẹ kèm theo đĩa trái cây tươi chọn lọc.</p>
+                    <ul class="combo-details">
+                        <li><i class="fa-solid fa-check"></i> 1 Jack Daniel</li>
+                        <li><i class="fa-solid fa-check"></i> Cocktail / Fruit Vip</li>
+                        <li><i class="fa-solid fa-check"></i> 2 Pepsi</li>
+                        <li><i class="fa-solid fa-check"></i> Shisha VIP cao cấp</li>
+                    </ul>
                 </div>
-                <div class="menu-list-item">
-                    <div class="menu-flex">
-                        <span class="dish-name">Combo Luxury Future</span>
-                        <span class="dish-line"></span>
-                        <span class="dish-price">Liên Hệ</span>
+                <div class="menu-card">
+                    <div class="combo-header">
+                        <span class="combo-name">COMBO 16</span>
+                        <span class="combo-price">3.950.000</span>
                     </div>
-                    <p class="dish-desc">Set cao cấp dành cho bàn VIP: Dòng rượu mạnh Premium, nước mix thượng hạng & trái cây đĩa lớn.</p>
+                    <ul class="combo-details">
+                        <li><i class="fa-solid fa-check"></i> 1 Jagermeister</li>
+                        <li><i class="fa-solid fa-check"></i> Cocktail / Fruit Vip</li>
+                        <li><i class="fa-solid fa-check"></i> 2 Redbull</li>
+                        <li><i class="fa-solid fa-check"></i> Shisha VIP cao cấp</li>
+                    </ul>
+                </div>
+                <div class="menu-card">
+                    <div class="combo-header">
+                        <span class="combo-name">COMBO 17</span>
+                        <span class="combo-price">5.750.000</span>
+                    </div>
+                    <ul class="combo-details">
+                        <li><i class="fa-solid fa-check"></i> 1 Vodka Grey Goose</li>
+                        <li><i class="fa-solid fa-check"></i> Cocktail / Fruit Vip</li>
+                        <li><i class="fa-solid fa-check"></i> 2 Fanta</li>
+                        <li><i class="fa-solid fa-check"></i> Shisha VIP cao cấp</li>
+                    </ul>
+                </div>
+                <div class="menu-card">
+                    <div class="combo-header">
+                        <span class="combo-name">COMBO 18</span>
+                        <span class="combo-price">4.950.000</span>
+                    </div>
+                    <ul class="combo-details">
+                        <li><i class="fa-solid fa-check"></i> 1 Hennessy VS</li>
+                        <li><i class="fa-solid fa-check"></i> Cocktail / Fruit Vip</li>
+                        <li><i class="fa-solid fa-check"></i> 2 Pepsi</li>
+                        <li><i class="fa-solid fa-check"></i> Shisha VIP cao cấp</li>
+                    </ul>
+                </div>
+                <div class="menu-card">
+                    <div class="combo-header">
+                        <span class="combo-name">COMBO 19</span>
+                        <span class="combo-price">6.590.000</span>
+                    </div>
+                    <ul class="combo-details">
+                        <li><i class="fa-solid fa-check"></i> 1 Hennessy VSOP</li>
+                        <li><i class="fa-solid fa-check"></i> Cocktail / Fruit Vip</li>
+                        <li><i class="fa-solid fa-check"></i> 2 Pepsi</li>
+                        <li><i class="fa-solid fa-check"></i> Shisha VIP cao cấp</li>
+                    </ul>
+                </div>
+                <div class="menu-card">
+                    <div class="combo-header">
+                        <span class="combo-name">COMBO 20</span>
+                        <span class="combo-price">3.990.000</span>
+                    </div>
+                    <ul class="combo-details">
+                        <li><i class="fa-solid fa-check"></i> 1 Chivas Regal 12YO</li>
+                        <li><i class="fa-solid fa-check"></i> Cocktail / Fruit Vip</li>
+                        <li><i class="fa-solid fa-check"></i> 2 Pepsi</li>
+                        <li><i class="fa-solid fa-check"></i> Shisha VIP cao cấp</li>
+                    </ul>
+                </div>
+                <div class="menu-card">
+                    <div class="combo-header">
+                        <span class="combo-name">COMBO 21</span>
+                        <span class="combo-price">5.350.000</span>
+                    </div>
+                    <ul class="combo-details">
+                        <li><i class="fa-solid fa-check"></i> 1 Chivas Regal 15YO</li>
+                        <li><i class="fa-solid fa-check"></i> Cocktail / Fruit Vip</li>
+                        <li><i class="fa-solid fa-check"></i> 4 Pepsi</li>
+                        <li><i class="fa-solid fa-check"></i> Shisha VIP cao cấp</li>
+                    </ul>
+                </div>
+                <div class="menu-card">
+                    <div class="combo-header">
+                        <span class="combo-name">COMBO 22</span>
+                        <span class="combo-price">6.350.000</span>
+                    </div>
+                    <ul class="combo-details">
+                        <li><i class="fa-solid fa-check"></i> 1 Chivas Regal 18YO</li>
+                        <li><i class="fa-solid fa-check"></i> Cocktail / Fruit Vip</li>
+                        <li><i class="fa-solid fa-check"></i> 4 Pepsi</li>
+                        <li><i class="fa-solid fa-check"></i> Shisha VIP cao cấp</li>
+                    </ul>
+                </div>
+                <div class="menu-card">
+                    <div class="combo-header">
+                        <span class="combo-name">COMBO 23</span>
+                        <span class="combo-price">6.990.000</span>
+                    </div>
+                    <ul class="combo-details">
+                        <li><i class="fa-solid fa-check"></i> 1 Chivas 18YO Blue Sign.</li>
+                        <li><i class="fa-solid fa-check"></i> Cocktail / Fruit Vip</li>
+                        <li><i class="fa-solid fa-check"></i> 2 Pepsi</li>
+                        <li><i class="fa-solid fa-check"></i> Shisha VIP cao cấp</li>
+                    </ul>
+                </div>
+                <div class="menu-card">
+                    <div class="combo-header">
+                        <span class="combo-name">COMBO 24</span>
+                        <span class="combo-price">4.250.000</span>
+                    </div>
+                    <ul class="combo-details">
+                        <li><i class="fa-solid fa-check"></i> 1 Ballantine's 12YO</li>
+                        <li><i class="fa-solid fa-check"></i> Cocktail / Fruit Vip</li>
+                        <li><i class="fa-solid fa-check"></i> 2 Pepsi</li>
+                        <li><i class="fa-solid fa-check"></i> Shisha VIP cao cấp</li>
+                    </ul>
+                </div>
+                <div class="menu-card">
+                    <div class="combo-header">
+                        <span class="combo-name">COMBO 25</span>
+                        <span class="combo-price">6.550.000</span>
+                    </div>
+                    <ul class="combo-details">
+                        <li><i class="fa-solid fa-check"></i> 1 Ballantine's 17YO</li>
+                        <li><i class="fa-solid fa-check"></i> Cocktail / Fruit Vip</li>
+                        <li><i class="fa-solid fa-check"></i> 2 Pepsi</li>
+                        <li><i class="fa-solid fa-check"></i> Shisha VIP cao cấp</li>
+                    </ul>
+                </div>
+                <div class="menu-card">
+                    <div class="combo-header">
+                        <span class="combo-name">COMBO 26</span>
+                        <span class="combo-price">8.790.000</span>
+                    </div>
+                    <ul class="combo-details">
+                        <li><i class="fa-solid fa-check"></i> 1 Macallan 12YO Double Cask</li>
+                        <li><i class="fa-solid fa-check"></i> Cocktail Vip / Fruit Vip</li>
+                        <li><i class="fa-solid fa-check"></i> 2 Pepsi</li>
+                        <li><i class="fa-solid fa-check"></i> Shisha VIP cao cấp</li>
+                    </ul>
+                </div>
+                <div class="menu-card">
+                    <div class="combo-header">
+                        <span class="combo-name">COMBO 27</span>
+                        <span class="combo-price">11.990.000</span>
+                    </div>
+                    <ul class="combo-details">
+                        <li><i class="fa-solid fa-check"></i> 1 The Glenlivet 18YO</li>
+                        <li><i class="fa-solid fa-check"></i> Cocktail Vip / Fruit Vip</li>
+                        <li><i class="fa-solid fa-check"></i> 2 Pepsi</li>
+                        <li><i class="fa-solid fa-check"></i> Shisha VIP cao cấp</li>
+                    </ul>
+                </div>
+                <div class="menu-card">
+                    <div class="combo-header">
+                        <span class="combo-name">COMBO 28</span>
+                        <span class="combo-price">11.590.000</span>
+                    </div>
+                    <ul class="combo-details">
+                        <li><i class="fa-solid fa-check"></i> 1 Royal Salute 21YO</li>
+                        <li><i class="fa-solid fa-check"></i> Cocktail Vip / Fruit Vip</li>
+                        <li><i class="fa-solid fa-check"></i> 2 Pepsi</li>
+                        <li><i class="fa-solid fa-check"></i> Shisha VIP cao cấp</li>
+                    </ul>
                 </div>
             </div>
 
-            <div class="menu-block">
-                <h3>🍾 WINE & BEER</h3>
-                <div class="menu-list-item">
-                    <div class="menu-flex">
-                        <span class="dish-name">Premium Whisky / Cognac</span>
-                        <span class="dish-line"></span>
-                        <span class="dish-price">Xem Menu</span>
+            <div id="combo-ruou-2" class="menu-content">
+                <div class="menu-card">
+                    <div class="combo-header">
+                        <span class="combo-name">COMBO 1</span>
+                        <span class="combo-price">3.290.000</span>
                     </div>
-                    <p class="dish-desc">Các dòng rượu mạnh nhập khẩu chính hãng cao cấp hàng đầu thế giới.</p>
+                    <ul class="combo-details">
+                        <li><i class="fa-solid fa-check"></i> 1 Cizano</li>
+                        <li><i class="fa-solid fa-check"></i> Cocktail / Fruit Vip</li>
+                        <li><i class="fa-solid fa-check"></i> 2 Water</li>
+                        <li><i class="fa-solid fa-check"></i> Shisha VIP cao cấp</li>
+                    </ul>
                 </div>
-                <div class="menu-list-item">
-                    <div class="menu-flex">
-                        <span class="dish-name">Bia Chai Nhập Khẩu</span>
-                        <span class="dish-line"></span>
-                        <span class="dish-price">Xem Menu</span>
+                <div class="menu-card">
+                    <div class="combo-header">
+                        <span class="combo-name">COMBO 2</span>
+                        <span class="combo-price">8.290.000</span>
                     </div>
-                    <p class="dish-desc">Heineken, Budweiser, Corona... luôn được ướp đá lạnh hoàn hảo.</p>
+                    <ul class="combo-details">
+                        <li><i class="fa-solid fa-check"></i> 3 Cizano</li>
+                        <li><i class="fa-solid fa-check"></i> Cocktail Vip / Fruit Vip</li>
+                        <li><i class="fa-solid fa-check"></i> 4 Water</li>
+                        <li><i class="fa-solid fa-check"></i> Shisha VIP cao cấp</li>
+                    </ul>
+                </div>
+                <div class="menu-card">
+                    <div class="combo-header">
+                        <span class="combo-name">COMBO 3</span>
+                        <span class="combo-price">3.450.000</span>
+                    </div>
+                    <ul class="combo-details">
+                        <li><i class="fa-solid fa-check"></i> 1 Vieux Papes Blanc</li>
+                        <li><i class="fa-solid fa-check"></i> Cocktail / Fruit Vip</li>
+                        <li><i class="fa-solid fa-check"></i> 2 Water</li>
+                        <li><i class="fa-solid fa-check"></i> Shisha VIP cao cấp</li>
+                    </ul>
+                </div>
+                <div class="menu-card">
+                    <div class="combo-header">
+                        <span class="combo-name">COMBO 4</span>
+                        <span class="combo-price">8.750.000</span>
+                    </div>
+                    <ul class="combo-details">
+                        <li><i class="fa-solid fa-check"></i> 3 Vieux Papes Blanc</li>
+                        <li><i class="fa-solid fa-check"></i> Cocktail Vip / Fruit Vip</li>
+                        <li><i class="fa-solid fa-check"></i> 4 Water</li>
+                        <li><i class="fa-solid fa-check"></i> Shisha VIP cao cấp</li>
+                    </ul>
+                </div>
+                <div class="menu-card">
+                    <div class="combo-header">
+                        <span class="combo-name">COMBO 5</span>
+                        <span class="combo-price">3.350.000</span>
+                    </div>
+                    <ul class="combo-details">
+                        <li><i class="fa-solid fa-check"></i> 1 Fogoso</li>
+                        <li><i class="fa-solid fa-check"></i> Cocktail / Fruit Vip</li>
+                        <li><i class="fa-solid fa-check"></i> 2 Water</li>
+                        <li><i class="fa-solid fa-check"></i> Shisha VIP cao cấp</li>
+                    </ul>
+                </div>
+                <div class="menu-card">
+                    <div class="combo-header">
+                        <span class="combo-name">COMBO 6</span>
+                        <span class="combo-price">8.550.000</span>
+                    </div>
+                    <ul class="combo-details">
+                        <li><i class="fa-solid fa-check"></i> 3 Fogoso</li>
+                        <li><i class="fa-solid fa-check"></i> Cocktail Vip / Fruit Vip</li>
+                        <li><i class="fa-solid fa-check"></i> 4 Water</li>
+                        <li><i class="fa-solid fa-check"></i> Shisha VIP cao cấp</li>
+                    </ul>
+                </div>
+                <div class="menu-card">
+                    <div class="combo-header">
+                        <span class="combo-name">COMBO 7</span>
+                        <span class="combo-price">5.390.000</span>
+                    </div>
+                    <ul class="combo-details">
+                        <li><i class="fa-solid fa-check"></i> 1 Luc Belaire Rare (Rose/Gold/Luxe)</li>
+                        <li><i class="fa-solid fa-check"></i> Cocktail / Fruit Vip</li>
+                        <li><i class="fa-solid fa-check"></i> 2 Water</li>
+                        <li><i class="fa-solid fa-check"></i> Shisha VIP cao cấp</li>
+                    </ul>
+                </div>
+                <div class="menu-card">
+                    <div class="combo-header">
+                        <span class="combo-name">COMBO 8</span>
+                        <span class="combo-price">14.950.000</span>
+                    </div>
+                    <ul class="combo-details">
+                        <li><i class="fa-solid fa-check"></i> 3 Luc Belaire Rare (Rose/Gold/Luxe)</li>
+                        <li><i class="fa-solid fa-check"></i> Cocktail Vip / Fruit Vip</li>
+                        <li><i class="fa-solid fa-check"></i> 4 Water</li>
+                        <li><i class="fa-solid fa-check"></i> Shisha VIP cao cấp</li>
+                    </ul>
+                </div>
+                <div class="menu-card">
+                    <div class="combo-header">
+                        <span class="combo-name">COMBO 13</span>
+                        <span class="combo-price">25.990.000</span>
+                    </div>
+                    <ul class="combo-details">
+                        <li><i class="fa-solid fa-check"></i> 1 Armand De Brignac Brut Rose/Gold</li>
+                        <li><i class="fa-solid fa-check"></i> Cocktail Vip / Fruit Vip</li>
+                        <li><i class="fa-solid fa-check"></i> 2 Water</li>
+                        <li><i class="fa-solid fa-check"></i> Shisha VIP cao cấp</li>
+                    </ul>
+                </div>
+                <div class="menu-card">
+                    <div class="combo-header">
+                        <span class="combo-name">COMBO 14</span>
+                        <span class="combo-price">48.900.000</span>
+                    </div>
+                    <ul class="combo-details">
+                        <li><i class="fa-solid fa-check"></i> 2 Armand De Brignac Brut Rose/Gold</li>
+                        <li><i class="fa-solid fa-check"></i> Cocktail Vip / Fruit Vip</li>
+                        <li><i class="fa-solid fa-check"></i> 2 Water</li>
+                        <li><i class="fa-solid fa-check"></i> Shisha VIP cao cấp</li>
+                    </ul>
                 </div>
             </div>
 
-            <div class="menu-block">
-                <h3>🍓 LIGHT FOOD</h3>
-                <div class="menu-list-item">
-                    <div class="menu-flex">
-                        <span class="dish-
+            <div id="combo-bia" class="menu-content">
+                <div class="menu-card">
+                    <div class="combo-header">
+                        <span class="combo-name">COMBO BEER VIP 1</span>
+                        <span class="combo-price">1.950.000</span>
+                    </div>
+                    <ul class="combo-details">
+                        <li><i class="fa-solid fa-beer-mug-empty"></i> 10 Chai Tiger Silver</li>
+                        <li><i class="fa-solid fa-check"></i> Cocktail Vip / Fruit Vip</li>
+                        <li><i class="fa-solid fa-check"></i> Shisha VIP cao cấp</li>
+                    </ul>
+                </div>
+                <div class="menu-card">
+                    <div class="combo-header">
+                        <span class="combo-name">COMBO BEER VIP 2</span>
+                        <span class="combo-price">2.150.000</span>
+                    </div>
+                    <ul class="combo-details">
+                        <li><i class="fa-solid fa-beer-mug-empty"></i> 10 Chai Heineken</li>
+                        <li><i class="fa-solid fa-check"></i> Cocktail Vip / Fruit Vip</li>
+                        <li><i class="fa-solid fa-check"></i> Shisha VIP cao cấp</li>
+                    </ul>
+                </div>
+                <div class="menu-card">
+                    <div class="combo-header">
+                        <span class="combo-name">COMBO BEER VIP 3</span>
+                        <span class="combo-price">2.750.000</span>
+                    </div>
+                    <ul class="combo-details">
+                        <li><i class="fa-solid fa-beer-mug-empty"></i> 10 Chai Heineken Aluminium</li>
+                        <li><i class="fa-solid fa-check"></i> Cocktail Vip / Fruit Vip</li>
+                        <li><i class="fa-solid fa-check"></i> Shisha VIP cao cấp</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="champagne" class="menu-content">
+                <div class="single-list">
+                    <div class="item-row"><span class="item-name">CINZANO ASTI / ROSE</span><span class="item-price">2.650.000</span></div>
+                    <div class="item-row"><span class="item-name">VIEUX PAPES BLANC DE BLANCS BRUT</span><span class="item-price">2.750.000</span></div>
+                    <div class="item-row"><span class="item-name">FOGOSO</span><span class="item-price">2.690.000</span></div>
+                    <div class="item-row"><span class="item-name">CHAMPAGNE ARMAND DE BRIGNAC BRUT ROSE</span><span class="item-price">24.900.000</span></div>
+                    <div class="item-row"><span class="item-name">CHAMPAGNE G.H MUMM GRAND CORDON</span><span class="item-price">6.490.000</span></div>
+                    <div class="item-row"><span class="item-name">CHAMPAGNE DOM PERIGON</span><span class="item-price">14.900.000</span></div>
+                    <div class="item-row"><span class="item-name">LUC BELAIRE RARE ROSE</span><span class="item-price">4.490.000</span></div>
+                    <div class="item-row"><span class="item-name">LUC BELAIRE RARE LUXE</span><span class="item-price">4.490.000</span></div>
+                    <div class="item-row"><span class="item-name">LUC BELAIRE BRUT GOLD</span><span class="item-price">4.490.000</span></div>
+                </div>
+            </div>
+
+            <div id="cocktails" class="menu-content">
+                <div class="single-list">
+                    <div class="item-row"><span class="item-name">DAIQUIRI COCKTAIL</span><span class="item-price">170.000</span></div>
+                    <div class="item-row"><span class="item-name">MARGARITA COCKTAIL</span><span class="item-price">190.000</span></div>
+                    <div class="item-row"><span class="item-name">NEGRONI COCKTAIL</span><span class="item-price">170.000</span></div>
+                    <div class="item-row"><span class="item-name">OLD FASHION COCKTAIL</span><span class="item-price">190.000</span></div>
+                    <div class="item-row"><span class="item-name">MARTINI COCKTAIL</span><span class="item-price">170.000</span></div>
+                    <div class="item-row"><span class="item-name">HAWAI TROPICAL COCKTAIL</span><span class="item-price">790.000</span></div>
+                    <div class="item-row"><span class="item-name">MOJITO COCKTAIL</span><span class="item-price">259.000</span></div>
+                    <div class="item-row"><span class="item-name">ORANGE SUMMER COCKTAIL</span><span class="item-price">890.000</span></div>
+                    <div class="item-row"><span class="item-name">SUPPER MARGARITA COCKTAIL</span><span class="item-price">890.000</span></div>
+                    <div class="item-row"><span class="item-name">BLUE LAGOON PITTHER COCKTAIL</span><span class="item-price">790.000</span></div>
+                </div>
+            </div>
+
+            <div id="shisha-soft" class="menu-content">
+                <div class="single-list" style="margin-bottom: 25px;">
+                    <h3 style="color:var(--primary); margin-bottom:15px; letter-spacing:1px;"><i class="fa-solid fa-smog"></i> THÁP SHISHA</h3>
+                    <div class="item-row"><span class="item-name">SHISHA ĐỒNG GIÁ</span><span class="item-price">550.000</span></div>
+                    <div class="item-row"><span class="item-name">SHISHA VIP LUXURY</span><span class="item-price">850.000</span></div>
+                </div>
+                <div class="single-list" style="margin-bottom: 25px;">
+                    <h3 style="color:var(--primary); margin-bottom:15px; letter-spacing:1px;"><i class="fa-solid fa-bottle-water"></i> NƯỚC NGỌT & NƯỚC SUỐI</h3>
+                    <div class="item-row"><span class="item-name">NƯỚC SUỐI</span><span class="item-price">79.000</span></div>
+                    <div class="item-row"><span class="item-name">PEPSI</span><span class="item-price">89.000</span></div>
+                    <div class="item-row"><span class="item-name">REDBULL</span><span class="item-price">89.000</span></div>
+                    <div class="item-row"><span class="item-name">7UP</span><span class="item-price">89.000</span></div>
+                    <div class="item-row"><span class="item-name">SODA / TONIC</span><span class="item-price">89.000</span></div>
+                    <div class="item-row"><span class="item-name">TWISTER</span><span class="item-price">89.000</span></div>
+                </div>
+                <div class="single-list">
+                    <h3 style="color:var(--primary); margin-bottom:15px; letter-spacing:1px;"><i class="fa-solid fa-smoking"></i> THUỐC LÁ</h3>
+                    <div class="item-row"><span class="item-name">THUỐC 555 NGOẠI</span><span class="item-price">110.000</span></div>
+                    <div class="item-row"><span class="item-name">THUỐC 555 VIỆT</span><span class="item-price">135.000</span></div>
+                    <div class="item-row"><span class="item-name">THUỐC CARAVEN DEMI</span><span class="item-price">80.000</span></div>
+                    <div class="item-row"><span class="item-name">THUỐC ESSE XANH BẤM</span><span class="item-price">100.000</span></div>
+                </div>
+            </div>
+
+            <p class="menu-notice">Giá trên chưa bao gồm 10% Thuế (VAT) và 5% Phí phục vụ | Prices are not included 10% VAT and 5% Service Charge.</p>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2 class="section-title">ABOUT US</h2>
+        <div class="about-box">
+            <div class="about-text">
+                <strong>FOR YOU CLUB</strong> là điểm đến nightlife hàng đầu tại Đà Nẵng. 
+                Không gian sang trọng, âm thanh đẳng cấp, DJ chuyên nghiệp cùng những màn trình diễn bùng nổ mang đến trải nghiệm giải trí hoàn toàn khác biệt mỗi đêm.
+                <br><br>
+                Cho dù bạn muốn tổ chức sinh nhật, tiệc nhóm hay đơn giản là tận hưởng trọn vẹn cuộc sống về đêm thượng lưu, chúng tôi luôn sẵn sàng mang đến cho bạn những khoảnh khắc đáng nhớ nhất.
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery">
+        <h2 class="section-title">GALLERY</h2>
+        <div class="gallery">
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1571266028243-d220c9f7a29f?q=80&w=1200" alt="Club 1"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=1200" alt="Club 2"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1566737236500-c8ac43014a67?q=80&w=1200" alt="Club 3"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?q=80&w=1200" alt="Club 4"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1200" alt="Club 5"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&w=1200" alt="Club 6"></div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2 class="section-title">CONTACT US</h2>
+        
+        <div class="contact-info">
+            <div class="info-item">
+                <i class="fa-solid fa-map-location-dot"></i> 52-55 Trần Văn Trứ, Đà Nẵng
+            </div>
+            <div class="info-item">
+                <i class="fa-solid fa-phone-volume"></i> 0775 007 445
+            </div>
+        </div>
+
+        <div class="socials">
+            <a href="http://zalo.me/84775007445" target="_blank"><i class="fa-solid fa-comment"></i> Zalo</a>
+            <a href="https://www.facebook.com/share/18pw1TybkP/?mibextid=wwXIfr" target="_blank"><i class="fa-brands fa-facebook-f"></i> Facebook</a>
+            <a href="http://qr.kakao.com/talk/YkdiZ28b4TwCKJ5jq2DKPar4htE-" target="_blank"><i class="fa-solid fa-comment-sms"></i> KakaoTalk</a>
+            <a href="https://wa.me/qr/EREYB6IMDLPIZO1" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+            <a href="https://t.me/+84775007445" target="_blank"><i class="fa-brands fa-telegram"></i> Telegram</a>
+        </div>
+    </section>
+
+    <footer>
+        <h3>FOR YOU CLUB</h3>
+        <p>DA NANG NIGHTLIFE DESTINATION</p>
+        <p style="margin-top: 25px; opacity: 0.3; font-size: 12px;">© 2026 FOR YOU CLUB. All Rights Reserved.</p>
+    </footer>
+
+    <a href="tel:0775007445" class="floating">
+        <i class="fa-solid fa-phone"></i> BOOK NOW
+    </a>
+
+    <script>
+        function openMenu(evt, menuName) {
+            // Khai báo các biến
+            var i, menucontent, tablinks;
+
+            // Ẩn tất cả các nội dung menu cũ đi
+            menucontent = document.getElementsByClassName("menu-content");
+            for (i = 0; i < menucontent.length; i++) {
+                menucontent[i].className = menucontent[i].className.replace(" active", "");
+            }
+
+            // Gỡ bỏ class "active" của tất cả các nút tab
+            tablinks = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            // Hiển thị nội dung menu của tab hiện tại và kích hoạt nút bấm đó
+            document.getElementById(menuName).className += " active";
+            evt.currentTarget.className += " active";
+        }
+    </script>
+
+</body>
+</html>
