@@ -6,10 +6,10 @@
     <title>FOR YOU CLUB - The Future Of Nightlife</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2 family=Orbitron:wght@700;900&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     
     <style>
-        /* --- HỆ THỐNG GIAO DIỆN HIỆN ĐẠI KHÔNG DÙNG ẢNH --- */
+        /* --- HỆ THỐNG GIAO DIỆN CYBERPUNK KHÔNG DÙNG ẢNH --- */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -27,11 +27,14 @@
             --glow-pink: rgba(255, 0, 127, 0.6);
         }
 
+        html {
+            scroll-behavior: smooth; /* Tạo hiệu ứng cuộn mượt mà khi ấn menu */
+        }
+
         body {
             background-color: var(--bg-dark);
             color: #ffffff;
             font-family: 'Plus Jakarta Sans', sans-serif;
-            scroll-behavior: smooth;
             overflow-x: hidden;
         }
 
@@ -41,7 +44,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px 8%;
-            background: rgba(5, 5, 8, 0.9);
+            background: rgba(5, 5, 8, 0.95);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             position: sticky;
@@ -51,22 +54,16 @@
         }
 
         .logo-box {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            cursor: pointer;
-        }
-
-        /* LOGO BẰNG CHỮ NEON CAO CẤP CHỨ KHÔNG DÙNG ẢNH */
-        .logo-text {
             font-family: 'Orbitron', sans-serif;
             font-weight: 900;
             font-size: 22px;
             color: #fff;
-            text-shadow: 0 0 10px #fff, 0 0 20px var(--neon-cyan), 0 0 30px var(--neon-cyan);
+            text-shadow: 0 0 10px #fff, 0 0 20px var(--neon-cyan);
             letter-spacing: 2px;
+            text-decoration: none;
         }
 
+        /* Menu trên Máy tính */
         .nav-menu {
             display: flex;
             align-items: center;
@@ -87,7 +84,7 @@
             text-shadow: 0 0 8px var(--glow-cyan);
         }
 
-        /* Nút Đặt Bàn Nhấp Nháy Neon */
+        /* Nút Đặt Bàn Máy Tính */
         .book-btn {
             background: transparent;
             border: 2px solid var(--neon-pink);
@@ -107,7 +104,74 @@
             transform: scale(1.05);
         }
 
-        /* TRANG BÌA CHÍNH (HERO) - HIỆU ỨNG ĐÈN MỜ VŨ TRƯỜNG */
+        /* Nút Menu Ba Gạch (Chỉ hiện trên điện thoại) */
+        .menu-toggle {
+            display: none;
+            font-size: 28px;
+            color: var(--neon-cyan);
+            background: none;
+            border: none;
+            cursor: pointer;
+            text-shadow: 0 0 10px var(--neon-cyan);
+        }
+
+        /* MENU DI ĐỘNG TRƯỢT (SIDEBAR) */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: -100%; /* Giấu menu đi ban đầu */
+            width: 280px;
+            height: 100vh;
+            background: rgba(5, 5, 8, 0.98);
+            border-left: 1px solid var(--border-neon);
+            box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            padding: 40px 30px;
+            gap: 25px;
+            transition: right 0.4s cubic-bezier(0.1, 0.9, 0.2, 1);
+        }
+
+        .sidebar.active {
+            right: 0; /* Đẩy menu ra khi ấn nút */
+        }
+
+        .close-btn {
+            align-self: flex-end;
+            font-size: 30px;
+            color: var(--neon-pink);
+            background: none;
+            border: none;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        .sidebar a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+            transition: color 0.3s;
+        }
+
+        .sidebar a:hover {
+            color: var(--neon-cyan);
+        }
+
+        .sidebar .sidebar-book {
+            border: 2px solid var(--neon-pink);
+            color: var(--neon-pink);
+            text-align: center;
+            border-radius: 50px;
+            margin-top: 20px;
+            font-weight: 700;
+        }
+
+        /* TRANG BÌA CHÍNH (HERO) */
         .hero {
             height: 85vh;
             display: flex;
@@ -119,21 +183,12 @@
                         radial-gradient(circle at 30% 70%, rgba(0, 229, 255, 0.08), transparent 40%);
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(180deg, transparent 60%, var(--bg-dark));
-            z-index: 1;
-        }
-
         .hero-content {
             z-index: 2;
             max-width: 900px;
             padding: 0 20px;
         }
 
-        /* Logo Icon ở giữa màn hình bằng Emoji Phát Sáng */
         .hero-icon {
             font-size: 70px;
             margin-bottom: 20px;
@@ -152,7 +207,7 @@
             font-weight: 900;
             color: #fff;
             letter-spacing: 5px;
-            text-shadow: 0 0 20px rgba(255,255,255,0.2), 0 0 40px var(--neon-cyan);
+            text-shadow: 0 0 40px var(--neon-cyan);
             margin-bottom: 10px;
         }
 
@@ -166,7 +221,6 @@
             text-shadow: 0 0 10px var(--glow-pink);
         }
 
-        /* KHU VỰC NÚT ĐIỀU HƯỚNG SANG TRỌNG */
         .button-group {
             display: flex;
             justify-content: center;
@@ -204,7 +258,6 @@
         .btn-zalo:hover {
             background: #fff;
             color: #000;
-            box-shadow: 0 0 20px rgba(255,255,255,0.4);
             transform: translateY(-3px);
         }
 
@@ -225,7 +278,6 @@
             font-size: 36px;
             letter-spacing: 3px;
             color: #fff;
-            text-shadow: 0 0 15px rgba(255,255,255,0.1);
         }
 
         .neon-line {
@@ -236,12 +288,11 @@
             border-radius: 10px;
         }
 
-        /* KHU VỰC THỜI THƯỢNG (DỊCH VỤ TRẢI NGHIỆM) */
+        /* KHU VỰC TRẢI NGHIỆM */
         .feature-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 25px;
-            margin-bottom: 40px;
         }
 
         .feature-card {
@@ -257,7 +308,6 @@
             background: rgba(255, 255, 255, 0.03);
             border-color: var(--border-neon);
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 229, 255, 0.05);
         }
 
         .feature-icon {
@@ -279,7 +329,7 @@
             line-height: 1.6;
         }
 
-        /* KHU VỰC MENU ĐỒ UỐNG CAO CẤP */
+        /* KHU VỰC MENU ĐỒ UỐNG */
         .menu-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
@@ -292,13 +342,6 @@
             border-radius: 24px;
             padding: 35px;
             position: relative;
-        }
-
-        .menu-block::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 10%; width: 80%; height: 2px;
-            background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
         }
 
         .menu-block h3 {
@@ -326,7 +369,6 @@
             font-weight: 700;
             color: #ffffff;
             font-size: 17px;
-            letter-spacing: 0.5px;
         }
 
         .dish-line {
@@ -339,7 +381,6 @@
             color: var(--neon-pink);
             font-weight: 700;
             font-family: 'Orbitron', sans-serif;
-            text-shadow: 0 0 5px rgba(255, 0, 127, 0.3);
         }
 
         .dish-desc {
@@ -349,7 +390,7 @@
             line-height: 1.5;
         }
 
-        /* KHU VỰC LIÊN HỆ VIP */
+        /* KHU VỰC LIÊN HỆ */
         .contact-box {
             background: linear-gradient(180deg, rgba(255,255,255,0.01) 0%, rgba(255,255,255,0.00) 100%);
             border: 1px solid rgba(255, 0, 127, 0.15);
@@ -358,22 +399,6 @@
             text-align: center;
             max-width: 800px;
             margin: 40px auto 0 auto;
-            position: relative;
-        }
-
-        .contact-box::after {
-            content: 'VIP';
-            position: absolute;
-            top: -13px; left: 50%;
-            transform: translateX(-50%);
-            background: var(--neon-pink);
-            color: #000;
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 900;
-            font-size: 12px;
-            padding: 3px 15px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px var(--neon-pink);
         }
 
         .info-p {
@@ -396,7 +421,6 @@
             border-radius: 50px;
             font-weight: bold;
             font-size: 15px;
-            letter-spacing: 0.5px;
             box-shadow: 0 5px 20px rgba(24, 119, 242, 0.3);
             transition: all 0.3s ease;
         }
@@ -406,7 +430,6 @@
             box-shadow: 0 8px 30px rgba(24, 119, 242, 0.5);
         }
 
-        /* CHÂN TRANG */
         footer {
             text-align: center;
             padding: 35px;
@@ -421,9 +444,14 @@
         @media (max-width: 768px) {
             h1 { font-size: 38px; letter-spacing: 2px; }
             .subtitle { font-size: 14px; letter-spacing: 4px; }
-            nav { padding: 15px 5%; }
+            nav { padding: 15px 6%; }
             .logo-text { font-size: 18px; }
-            .nav-menu a:not(.book-btn) { display: none; }
+            
+            /* Ẩn thanh menu ngang trên điện thoại */
+            .nav-menu { display: none; }
+            /* Hiện nút ba gạch trên điện thoại */
+            .menu-toggle { display: block; }
+            
             section { padding: 50px 24px; }
             .menu-block { padding: 25px; }
         }
@@ -432,16 +460,25 @@
 <body>
 
     <nav>
-        <div class="logo-box" onclick="window.location.reload();">
-            <span class="logo-text">FOR YOU CLUB</span>
-        </div>
+        <a href="#" class="logo-box">FOR YOU CLUB</a>
+        
         <div class="nav-menu">
             <a href="#experience-section">Trải Nghiệm</a>
             <a href="#menu-section">Menu Quán</a>
             <a href="#contact-section">Liên Hệ</a>
             <a class="book-btn" href="tel:0775007445">ĐẶT BÀN</a>
         </div>
+
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
     </nav>
+
+    <div class="sidebar" id="mobileSidebar">
+        <button class="close-btn" onclick="toggleMenu()">✕</button>
+        <a href="#experience-section" onclick="toggleMenu()">Trải Nghiệm</a>
+        <a href="#menu-section" onclick="toggleMenu()">Menu Quán</a>
+        <a href="#contact-section" onclick="toggleMenu()">Liên Hệ</a>
+        <a class="sidebar-book" href="tel:0775007445">ĐẶT BÀN VIP</a>
+    </div>
 
     <section class="hero">
         <div class="hero-content">
@@ -530,39 +567,4 @@
                 <h3>🍓 LIGHT FOOD</h3>
                 <div class="menu-list-item">
                     <div class="menu-flex">
-                        <span class="dish-name">Đĩa Trái Cây Thập Cẩm VIP</span>
-                        <span class="dish-line"></span>
-                        <span class="dish-price">Xem Menu</span>
-                    </div>
-                    <p class="dish-desc">Sự kết hợp tuyệt vời từ các loại hoa quả tươi ngon mát lạnh theo mùa.</p>
-                </div>
-                <div class="menu-list-item">
-                    <div class="menu-flex">
-                        <span class="dish-name">Món Khô Nhắm Thượng Hạng</span>
-                        <span class="dish-line"></span>
-                        <span class="dish-price">Xem Menu</span>
-                    </div>
-                    <p class="dish-desc">Trâu gác bếp, khô bò xé tẩm vị, hạt điều rang củi hảo hạng.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact-section">
-        <div class="contact-box">
-            <div class="section-title">
-                <h2>THÔNG TIN ĐẶT BÀN</h2>
-                <div class="neon-line"></div>
-            </div>
-            <p class="info-p">📍 <strong>Địa chỉ:</strong> 52-55 Trần Văn Trứ, Đà Nẵng</p>
-            <p class="info-p">📞 <strong>Hotline:</strong> <a href="tel:0775007445" style="color:var(--neon-cyan); text-decoration:none; font-weight: bold;">0775 007 445</a></p>
-            <a class="fb-link-btn" href="https://www.facebook.com/share/18pw1TybkP/?mibextid=wwXIfr" target="_blank">🔷 KẾT NỐI QUA FACEBOOK</a>
-        </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2026 FOR YOU CLUB. THE FUTURE OF NIGHTLIFE.</p>
-    </footer>
-
-</body>
-</html>
+                        <span class="dish-
