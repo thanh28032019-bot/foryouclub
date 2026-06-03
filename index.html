@@ -1,59 +1,112 @@
 <!doctype html>
-<html>
+<html lang="vi">
 <head>
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <title>FOR YOU CLUB</title>
+    <title>FOR YOU CLUB - The Future Of Nightlife</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;800&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel='stylesheet' href='style.css'>
 </head>
 <body>
+
     <nav>
-        <div class='logo'>FOR YOU CLUB</div>
+        <div class='logo-container'>
+            <img src='IMG_3427.jpg' alt='FOR YOU CLUB Logo' class='nav-logo'>
+            <span class='logo-text'>FOR YOU CLUB</span>
+        </div>
         <div class='nav-links'>
+            <a href='#about'>Trải Nghiệm</a>
             <a href='#gallery'>Gallery</a>
-            <a href='#contact'>Liên hệ</a>
+            <a href='#contact'>Liên Hệ</a>
+            <a class='nav-btn' href='tel:0775007445'>ĐẶT BÀN NGAY</a>
         </div>
     </nav>
 
     <section class='hero'>
-        <div class='overlay'>
+        <div class='hero-overlay'></div>
+        <div class='hero-content'>
+            <img src='IMG_3427.jpg' alt='FOR YOU CLUB Big Logo' class='hero-logo'>
             <h1>FOR YOU CLUB</h1>
-            <p>The Future Of Nightlife</p>
-            <div class='cta-buttons'>
-                <a class='btn' href='tel:0775007445'>ĐẶT BÀN</a>
-                <a class='btn ghost' href='http://zalo.me/84775007445' target='_blank'>ZALO</a>
+            <p class='subtitle'>The Future Of Nightlife</p>
+            <div class='cta-group'>
+                <a class='btn btn-primary' href='tel:0775007445'>📞 ĐẶT BÀN: 0775.007.445</a>
+                <a class='btn btn-secondary' href='http://zalo.me/84775007445' target='_blank'>💬 CHAT ZALO</a>
             </div>
         </div>
     </section>
 
-    <section class='experience'>
-        <h2>TRẢI NGHIỆM</h2>
+    <section id='about' class='experience'>
+        <div class='section-header'>
+            <h2>ĐỈNH CAO TRẢI NGHIỆM</h2>
+            <div class='glow-line'></div>
+        </div>
         <div class='grid'>
-            <div>🎧 DJ Show</div>
-            <div>🤖 Future Stage</div>
-            <div>🍾 VIP Lounge</div>
-            <div>✨ Laser Show</div>
+            <div class='card'>
+                <div class='card-icon'>🎧</div>
+                <h3>Top DJ Show</h3>
+                <p>Hòa mình vào làn sóng âm nhạc điện tử bùng nổ được dẫn dắt bởi các DJ hàng đầu.</p>
+            </div>
+            <div class='card'>
+                <div class='card-icon'>🤖</div>
+                <h3>Future Stage</h3>
+                <p>Sân khấu biểu diễn mang phong cách tương lai độc lạ, vượt xa mọi giới hạn nghe nhìn.</p>
+            </div>
+            <div class='card'>
+                <div class='card-icon'>🍾</div>
+                <h3>VIP Lounge</h3>
+                <p>Không gian tiếp khách sang trọng, đẳng cấp với dịch vụ chăm sóc chuẩn thượng lưu.</p>
+            </div>
+            <div class='card'>
+                <div class='card-icon'>✨</div>
+                <h3>Laser Show</h3>
+                <p>Hệ thống ánh sáng Laser chuyển động đỉnh cao bao phủ toàn bộ không gian vũ trường.</p>
+            </div>
         </div>
     </section>
 
-    <section id='gallery'>
-        <h2>GALLERY</h2>
-        <div class='gallery'>
-            <img src='img1.jpg' alt='For You Club Stage'>
-            <img src='img2.jpg' alt='For You Club Dancers'>
-            <img src='img3.jpg' alt='For You Club Crowd'>
-            <img src='img4.jpeg' alt='For You Club Aerial Performance'>
-            <img src='img5.jpeg' alt='For You Club Laser Lighting'>
+    <section id='gallery' class='gallery-section'>
+        <div class='section-header'>
+            <h2>KHOẢNH KHẮC BÙNG NỔ</h2>
+            <div class='glow-line'></div>
+        </div>
+        <div class='gallery-grid'>
+            <div class='gallery-item wide'><img src='IMG_3433.jpg' alt='Sân khấu hoành tráng'></div>
+            <div class='gallery-item'><img src='IMG_3431.jpg' alt='Không khí cuồng nhiệt'></div>
+            <div class='gallery-item'><img src='IMG_3432.jpg' alt='Dancer quyến rũ'></div>
+            <div class='gallery-item'><img src='IMG_3430.jpg' alt='Biểu diễn nghệ thuật'></div>
+            <div class='gallery-item'><img src='IMG_3429.jpg' alt='Hiệu ứng khói lửa'></div>
+            <div class='gallery-item wide'><img src='IMG_3434.jpg' alt='Pháo hoa sự kiện'></div>
+            <div class='gallery-item'><img src='IMG_3435.jpg' alt='Vũ đoàn chuyên nghiệp'></div>
+            <div class='gallery-item'><img src='IMG_3436.jpg' alt='Sự kiện đặc biệt'></div>
+            <div class='gallery-item wide'><img src='IMG_3437.jpg' alt='Dàn người mẫu lộng lẫy'></div>
         </div>
     </section>
 
-    <section id='contact'>
-        <h2>LIÊN HỆ</h2>
-        <div class='contact-info'>
-            <p>📍 52-55 Trần Văn Trứ, Đà Nẵng</p>
-            <p>📞 0775007445</p>
-            <p><a class='fb-link' href='https://www.facebook.com/share/18pw1TybkP/?mibextid=wwXIfr' target='_blank'>🔷 Ghé thăm Facebook Fanpage</a></p>
+    <section id='contact' class='contact-section'>
+        <div class='contact-container'>
+            <div class='contact-info'>
+                <h2>KẾT NỐI VỚI CHÚNG TÔI</h2>
+                <div class='glow-line' style='margin: 0 0 30px 0;'></div>
+                <p class='contact-item'><span>📍</span> <strong>Địa chỉ:</strong> 52-55 Trần Văn Trứ, Đà Nẵng</p>
+                <p class='contact-item'><span>📞</span> <strong>Hotline:</strong> <a href='tel:0775007445'>0775 007 445</a></p>
+                <div class='social-buttons'>
+                    <a class='social-btn facebook' href='https://www.facebook.com/share/18pw1TybkP/?mibextid=wwXIfr' target='_blank'>
+                        🔷 Ghé thăm Fanpage Facebook
+                    </a>
+                </div>
+            </div>
+            <div class='contact-brand'>
+                <img src='IMG_3427.jpg' alt='FOR YOU CLUB Logo Footer'>
+                <p>READY TO PARTY WITH US?</p>
+            </div>
         </div>
     </section>
+
+    <footer>
+        <p>&copy; 2026 FOR YOU CLUB. All Rights Reserved. Designed for Nightlife Elite.</p>
+    </footer>
+
 </body>
 </html>
